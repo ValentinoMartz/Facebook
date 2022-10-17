@@ -3,6 +3,7 @@ import LeftSideBar from "./LeftSideBar";
 import Stories from "./Stories";
 import CreatePost from "./CreatePost";
 import Posts from "./Posts";
+import RightSidebar from "./RightSidebar";
 
 const Feed = () => {
   return (
@@ -17,8 +18,8 @@ const Feed = () => {
         {/* Posts */}
         <Posts />
       </div>
-
       {/* RightSidebar */}
+      <RightSidebar />
     </div>
   );
 };

@@ -55,9 +55,13 @@ const Post = () => {
             <div className="ml-[2.px] w-5 h-5">
               <Image src={hearth} />
             </div>
-            <p className="pl-2">Emily Doe and another 117</p>
+            <p className="pl-2 whitespace-nowrap text-[15px] sm:text-[16px]">
+              Emily Doe and another 117
+            </p>
           </div>
-          <p>72 comments </p>
+          <p className="whitespace-nowrap text-[15px] sm:text-[16px]">
+            72 comments{" "}
+          </p>
         </div>
         <div className="border-b my-2"></div>
         <div className="flex justify-between mx-6">
