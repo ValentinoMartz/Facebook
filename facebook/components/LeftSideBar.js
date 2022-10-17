@@ -17,7 +17,7 @@ const LeftSideBar = () => {
         </div>
 
         <div className="flex items-center mt-4">
-          <div className="w-10 h-10">
+          <div className="w-9 h-9 shrink-0">
             <Image src={guy} className="rounded-full" />
           </div>
           <p className="ml-2 font-bold">Log in</p>

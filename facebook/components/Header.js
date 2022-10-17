@@ -12,9 +12,9 @@ import { AiOutlineMessage } from "react-icons/ai";
 
 const Header = () => {
   return (
-    <div className="p-4 flex items-center justify-between border-b lg:px-8">
+    <div className="p-4 flex items-center justify-between border-b lg:px-10">
       {/* LeftSide */}
-      <div className="flex items-center  mr-2">
+      <div className="flex items-center mr-2">
         <div className="w-10 h-10">
           <Image src={facebook} />
         </div>

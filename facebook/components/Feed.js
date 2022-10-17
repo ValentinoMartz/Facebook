@@ -5,7 +5,7 @@ import CreatePost from "./CreatePost";
 
 const Feed = () => {
   return (
-    <div className="flex bg-[#f2f3f7] h-screen">
+    <div className="flex bg-[#f2f3f7]">
       {/* LeftSidebar */}
       <LeftSideBar />
       <div className="mx-auto">

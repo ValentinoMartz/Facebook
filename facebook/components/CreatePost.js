@@ -7,18 +7,17 @@ import smile from "../assets/smile.png";
 
 const CreatePost = () => {
   return (
-    <div className="w-screen sm:w-full">
-      <div className="mx-auto max-w-[25rem] sm:max-w-[33rem] bg-white rounded-[1rem]">
-        <div className=" flex items-center mt-8 w-full p-3 pt-4 ">
-          {/* sm:px-2  por si queda mal pegar esto al final de arriba y reemplazar el px*/}
-          <div className="w-14 h-14 shrink-0">
+    <div className="w-screen sm:w-full ">
+      <div className="max-w-[25rem] sm:max-w-[33rem] mx-auto  sm:px-2 bg-white rounded-[1rem] ">
+        <div className=" mt-8 flex items-center w-full p-3 pt-4 ">
+          <div className="w-12 h-12 shrink-0">
             <Image src={guy} className="rounded-full " />
           </div>
-          <div className="flex items-center ml-5 w-full h-20">
+          <div className="flex items-center ml-5 w-full">
             <input
               type="text"
               placeholder="What's on your mind Joe Doe?"
-              className="outline-0 bg-[#f2f3f7] p-1 rounded-full pl-3 w-full h-12"
+              className="outline-0 bg-[#f2f3f7] p-1 rounded-full pl-3 w-full h-12 truncate"
             />
           </div>
           <div className="flex items-center bg-blue-500 px-3 rounded-full h-10 ml-4">
@@ -31,19 +30,19 @@ const CreatePost = () => {
             <div className="w-7 h-7">
               <Image src={camera} />
             </div>
-            <p className="pl-2 whitespace-nowrap text=[14px]">Live Video</p>
+            <p className="pl-2  whitespace-nowrap text-[14px]">Live Video</p>
           </div>
           <div className="flex items-center">
             <div className="w-7 h-7">
               <Image src={photos} />
             </div>
-            <p className="pl-2 text=[14px]">Photo/Video</p>
+            <p className="pl-2 text-[14px]">Photo/Video</p>
           </div>
           <div className="flex  items-center">
             <div className="w-7 h-7">
               <Image src={smile} />
             </div>
-            <p className="pl-2 text=[14px]">Feeling/Activity</p>
+            <p className="pl-2 text-[14px]">Feeling/Activity</p>
           </div>
         </div>
       </div>
