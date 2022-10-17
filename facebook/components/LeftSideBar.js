@@ -35,11 +35,11 @@ const LeftSideBar = () => {
             <p className="ml-2 font-bold">Friends</p>
           </div>
 
-          <div className="flex">
+          <div className="flex items-center">
             <MdGroups className="w-8 h-8" />
             <p className="ml-2 font-bold">Groups</p>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <BsCart3 className="w-8 h-8" />
             <p className="ml-2 font-bold">Marketplace</p>
           </div>
@@ -47,7 +47,7 @@ const LeftSideBar = () => {
             <BsCalendar2Fill className="w-8 h-8" />
             <p className="ml-2 font-bold">Events</p>
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <AiFillClockCircle className="w-8 h-8" />
             <p className="ml-2 font-bold">Memories</p>
           </div>
