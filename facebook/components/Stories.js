@@ -22,8 +22,8 @@ const Stories = () => {
   ];
 
   return (
-    <div className="flex items-center w-screen h-36 sm:w-full  mx-2 mt-4 sm:mt-8">
-      <div className="w-full flex justify-between space-x-1 p-1 mx-auto max-w-[25rem] sm:max-w-[33rem] px-2 bg-white rounded-[1rem]">
+    <div className="flex items-center w-screen h-36 sm:w-full  px-2 mt-4 sm:mt-8">
+      <div className="w-full flex justify-between space-x-1 sm:space-x-4 p-1 mx-auto max-w-[25rem] sm:max-w-[33rem] px-2 bg-white rounded-[1rem] py-3">
         {stories.map((story) => (
           <div className="relative flex sm:w-24 sm:first-line:h-40 rounded-[1rem] w-[4.4rem] h-32">
             <div className="flex">

@@ -1,17 +1,21 @@
 import React from "react";
 import LeftSideBar from "./LeftSideBar";
 import Stories from "./Stories";
+import CreatePost from "./CreatePost";
 
 const Feed = () => {
   return (
     <div className="flex bg-[#f2f3f7] h-screen">
       {/* LeftSidebar */}
       <LeftSideBar />
-      {/* Stories */}
-      <Stories />
+      <div className="mx-auto">
+        {/* Stories */}
+        <Stories />
+        {/* CreatePost */}
+        <CreatePost />
+        {/* Post */}
+      </div>
 
-      {/* CreatePost */}
-      {/* Post */}
       {/* RightSidebar */}
     </div>
   );
