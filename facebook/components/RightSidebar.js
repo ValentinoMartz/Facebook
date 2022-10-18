@@ -34,7 +34,6 @@ const RightSidebar = () => {
           <div className="flex items-center space-x-2">
             <BsFillCameraVideoFill />
             <FiSearch />
-            <BsFillCameraVideoFill />
             <div className="w-7 h-7">
               <Image src={dots} />
             </div>
