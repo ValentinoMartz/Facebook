@@ -6,8 +6,11 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { AiOutlineDesktop, AiFillClockCircle } from "react-icons/ai";
 import Image from "next/image";
 import nouser from "../assets/nouser.png";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const LeftSideBar = () => {
+  const { data: session } = useSession();
+
   return (
     <div className="w-[10rem] hidden sm:block">
       <div className="flex flex-col pt-4 sm:pt-12 pl-7">
@@ -18,9 +21,11 @@ const LeftSideBar = () => {
 
         <div className="flex items-center mt-4">
           <div className="w-9 h-9 shrink-0">
-            <Image src={guy} className="rounded-full" />
+            <img src={session?.user?.image} className="rounded-full" />
           </div>
-          <p className="ml-2 font-bold">Log in</p>
+          <p className="ml-2 font-bold whitespace-nowrap">
+            {session?.user?.name}
+          </p>
         </div>
 
         <div className="border-b my-4"></div>
