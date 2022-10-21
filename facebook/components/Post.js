@@ -1,21 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import guy from "../assets/guy7.jpg";
 import dots from "../assets/dots.png";
 import car from "../assets/c-class.jpg";
 import hearth from "../assets/hearth.png";
 import like from "../assets/like.png";
+import share from "../assets/share.png";
+import blacklike from "../assets/2unlike.png";
+import bluelike from "../assets/25like.png";
 import { BiLike, BiSmile } from "react-icons/bi";
 import { FaRegCommentAlt } from "react-icons/fa";
-import share from "../assets/share.png";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { AiOutlineCamera, AiOutlineGif } from "react-icons/ai";
 import { BiWorld } from "react-icons/bi";
 import Image from "next/image";
 import Moment from "react-moment";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  setDoc,
+} from "firebase/firestore";
+import { db } from "../firebase";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Post = ({ id, timestamp, caption, userImg, username, img }) => {
+  const { data: session } = useSession();
+  const [hasLiked, setHasLiked] = useState(false);
+  const [likes, setLikes] = useState([]);
+
+  //When likes update in the db update the likes in the app as well
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
+        setLikes(snapshot.docs)
+      ),
+    [db, id]
+  );
+
+  //Checking if user liked already
+  useEffect(
+    () =>
+      setHasLiked(
+        likes.findIndex((like) => like.id === session?.user?.uid) !== -1
+      ),
+    [likes]
+  );
+
+  //When clicked once add like to firebase
+  //When clicked twice delete like from db
+  const likePost = async () => {
+    if (hasLiked) {
+      await deleteDoc(doc(db, "posts", id, "likes", session?.user?.uid));
+    } else {
+      await setDoc(doc(db, "posts", id, "likes", session?.user?.uid), {
+        username: session?.user?.name,
+      });
+    }
+  };
+
   return (
-    <div className="bg-white rounded-[1rem] px-5 py-4">
+    <div className="bg-white rounded-[1rem] px-5 py-4 mt-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center">
@@ -68,8 +113,11 @@ const Post = ({ id, timestamp, caption, userImg, username, img }) => {
         </div>
         <div className="border-b my-2"></div>
         <div className="flex justify-between mx-6">
-          <div className="flex items-center">
-            <BiLike className="w-6 h-6" />
+          <div className="flex items-center" onClick={likePost}>
+            <img
+              src={hasLiked ? bluelike.src : blacklike.src}
+              className="w-6 h-6"
+            />
             <p className="pl-2 text-[18px]">Like</p>
           </div>
           <div className="flex items-center">
