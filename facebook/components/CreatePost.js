@@ -1,17 +1,27 @@
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import guy from "../assets/guy7.jpg";
 import camera from "../assets/camera.png";
 import photos from "../assets/photos.png";
 import smile from "../assets/smile.png";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
+import { db, storage } from "../firebase";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const CreatePost = () => {
   const { data: session } = useSession();
   const captionRef = useRef(null);
-  console.log(captionRef);
+  const imageRef = useRef(null);
+  const [image, setImage] = useState(null);
+
+  console.log(image);
   //Create data post and add it to the collection
   const uploadPost = async () => {
     const docRef = await addDoc(collection(db, "posts"), {
@@ -19,9 +29,30 @@ const CreatePost = () => {
       username: session?.user?.name,
       caption: captionRef.current.value,
       timestamp: serverTimestamp(),
+    }); //Path for the image
+    const imagePath = ref(storage, `posts/${docRef.id}/image`);
+
+    //Upload the image to the address
+    //then with the snapshot declare the download URL
+    await uploadString(imagePath, image, "data_url").then(async (snapshot) => {
+      const downloadURL = await getDownloadURL(imagePath);
+      await updateDoc(doc(db, "posts", docRef.id), {
+        image: downloadURL,
+      });
     });
   };
 
+  //Add the image to the state
+  const addImageToState = (e) => {
+    e.preventDefault;
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    reader.onload = (readerEvent) => {
+      setImage(readerEvent.target.result);
+    };
+  };
   return (
     <div className="w-screen sm:w-full ">
       <div className="max-w-[25rem] sm:max-w-[33rem] mx-auto  sm:px-2 bg-white rounded-[1rem] ">
@@ -51,9 +82,18 @@ const CreatePost = () => {
             </div>
             <p className="pl-2  whitespace-nowrap text-[14px]">Live Video</p>
           </div>
-          <div className="flex items-center">
+          <div
+            className="flex items-center"
+            onClick={() => imageRef.current.click()}
+          >
             <div className="w-7 h-7">
               <Image src={photos} />
+              <input
+                type="file"
+                className="hidden"
+                ref={imageRef}
+                onChange={addImageToState}
+              />
             </div>
             <p className="pl-2 text-[14px]">Photo/Video</p>
           </div>
