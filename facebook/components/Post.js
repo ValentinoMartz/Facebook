@@ -7,6 +7,7 @@ import like from "../assets/like.png";
 import share from "../assets/share.png";
 import blacklike from "../assets/2unlike.png";
 import bluelike from "../assets/25like.png";
+import nouser from "../assets/nouser.png";
 import { BiLike, BiSmile } from "react-icons/bi";
 import { FaRegCommentAlt } from "react-icons/fa";
 import { RiArrowDownSLine } from "react-icons/ri";
@@ -204,7 +205,10 @@ const Post = ({ id, timestamp, caption, userImg, username, img }) => {
       {/* Inputs */}
       <div className="flex items-center mt-4">
         <div className=" w-10 h-10 shrink-0">
-          <img src={userImg} className="rounded-full" />
+          <img
+            src={session ? session?.user?.image : nouser.src}
+            className="rounded-full"
+          />
         </div>
         <div className="flex items-center w-full ml-2 bg-[#f2f3f7] rounded-full relative">
           <input

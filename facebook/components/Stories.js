@@ -30,12 +30,12 @@ const Stories = () => {
         <div className="relative flex  w-[4.4rem] h-32  sm:w-24 sm:h-40 rounded-[1rem] ">
           <div className="flex">
             <img
-              src={session?.user?.image}
+              src={session ? session?.user?.image : therock20.src}
               className="object-cover rounded-[1rem]"
             />
             <div className="flex absolute top-1 left-1 w-9 h-9 p-1 bg-blue-500 rounded-full">
               <img
-                src={session?.user?.image}
+                src={session ? session?.user?.image : therock.src}
                 className="rounded-full object-cover"
               />
             </div>

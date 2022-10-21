@@ -27,7 +27,7 @@ const Posts = () => {
             key={post.id}
             id={post.id}
             username={post.data().username}
-            userImg={post.data().img}
+            userImg={post.data().profileImg}
             caption={post.data().caption}
             timestamp={post.data().timestamp}
             img={post.data().image}

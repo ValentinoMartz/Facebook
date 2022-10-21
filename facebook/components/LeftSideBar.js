@@ -1,11 +1,11 @@
 import React from "react";
 import guy from "../assets/guy7.jpg";
+import nouser from "../assets/nouser.png";
 import { MdHome, MdGroups } from "react-icons/md";
 import { BsCart3, BsPeopleFill, BsCalendar2Fill } from "react-icons/bs";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { AiOutlineDesktop, AiFillClockCircle } from "react-icons/ai";
 import Image from "next/image";
-import nouser from "../assets/nouser.png";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 const LeftSideBar = () => {
@@ -21,10 +21,13 @@ const LeftSideBar = () => {
 
         <div className="flex items-center mt-4">
           <div className="w-9 h-9 shrink-0">
-            <img src={session?.user?.image} className="rounded-full" />
+            <img
+              src={session ? session?.user?.image : nouser.src}
+              className="rounded-full"
+            />
           </div>
           <p className="ml-2 font-bold whitespace-nowrap">
-            {session?.user?.name}
+            {session ? session?.user?.name : "Log in"}
           </p>
         </div>
 

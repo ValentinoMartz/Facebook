@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React, { useRef, useState } from "react";
 import guy from "../assets/guy7.jpg";
+import nouser from "../assets/nouser.png";
+
 import camera from "../assets/camera.png";
 import photos from "../assets/photos.png";
 import smile from "../assets/smile.png";
@@ -62,7 +64,7 @@ const CreatePost = () => {
       <div className="max-w-[25rem] sm:max-w-[33rem] mx-auto  sm:px-2 bg-white rounded-[1rem] ">
         <div className=" mt-8 flex items-center w-full p-3 pt-4 ">
           <div className="w-12 h-12 shrink-0">
-            <img src={session?.user?.image} className="rounded-full " />
+            <img src={session? session?.user?.image: nouser.src} className="rounded-full " />
           </div>
           <div className="flex items-center ml-5 w-full">
             <input

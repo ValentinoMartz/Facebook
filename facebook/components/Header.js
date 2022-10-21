@@ -14,6 +14,8 @@ import { useSession, signIn, signOut } from "next-auth/react";
 const Header = () => {
   const { data: session } = useSession();
 
+  const signIn = () => {};
+
   return (
     <div className="p-4 flex items-center justify-between border-b lg:px-10">
       {/* LeftSide */}
@@ -45,8 +47,11 @@ const Header = () => {
           <AiOutlineMessage className="w-7 h-7" />
         </div>
 
-        <div className="w-10 h-10">
-          <img src={session?.user?.image} className="rounded-full" />
+        <div className="w-10 h-10" onClick={signIn}>
+          <img
+            src={session ? session?.user?.image : nouser.src}
+            className="rounded-full"
+          />
         </div>
       </div>
     </div>
