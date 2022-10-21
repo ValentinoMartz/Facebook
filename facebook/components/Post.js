@@ -13,7 +13,7 @@ import { BiWorld } from "react-icons/bi";
 import Image from "next/image";
 import Moment from "react-moment";
 
-const Post = ({ id, timestamp, caption, userImg, username, image }) => {
+const Post = ({ id, timestamp, caption, userImg, username, img }) => {
   return (
     <div className="bg-white rounded-[1rem] px-5 py-4">
       {/* Header */}
@@ -45,7 +45,7 @@ const Post = ({ id, timestamp, caption, userImg, username, image }) => {
 
       {/* Image */}
       <div className="-mx-5">
-        <img src={image} />
+        <img src={img} />
       </div>
 
       {/* Number of Likes + buttons */}
@@ -59,7 +59,7 @@ const Post = ({ id, timestamp, caption, userImg, username, image }) => {
               <Image src={hearth} />
             </div>
             <p className="pl-2 whitespace-nowrap text-[15px] sm:text-[16px]">
-              Kemuri Martinez and another 11745 michis
+              Emily Doe and another 117
             </p>
           </div>
           <p className="whitespace-nowrap text-[15px] sm:text-[16px]">

@@ -20,10 +20,11 @@ const CreatePost = () => {
   const captionRef = useRef(null);
   const imageRef = useRef(null);
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  console.log(image);
   //Create data post and add it to the collection
   const uploadPost = async () => {
+    setLoading(true);
     const docRef = await addDoc(collection(db, "posts"), {
       profileImg: session?.user?.image,
       username: session?.user?.name,
@@ -40,6 +41,9 @@ const CreatePost = () => {
         image: downloadURL,
       });
     });
+    setImage("");
+    setLoading(false);
+    captionRef.current.value = null;
   };
 
   //Add the image to the state
@@ -70,9 +74,18 @@ const CreatePost = () => {
           </div>
           <div className="flex items-center bg-blue-500 px-3 rounded-full h-10 ml-4">
             <button className="font-bold text-white" onClick={uploadPost}>
-              Post
+              {loading ? "Loading" : "Post"}
             </button>
           </div>
+        </div>
+        <div className="">
+          {image ? (
+            <div className="" onClick={() => setImage("")}>
+              <img src={image} alt="" className="p-4" />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="border-b mb-4 mt-2"></div>
         <div className="flex justify-between px-3 sm:mx-9 pb-3">
