@@ -1,13 +1,26 @@
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
 import guy from "../assets/guy7.jpg";
 import camera from "../assets/camera.png";
 import photos from "../assets/photos.png";
 import smile from "../assets/smile.png";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../firebase";
 
 const CreatePost = () => {
   const { data: session } = useSession();
+  const captionRef = useRef(null);
+  console.log(captionRef);
+  //Create data post and add it to the collection
+  const uploadPost = async () => {
+    const docRef = await addDoc(collection(db, "posts"), {
+      profileImg: session?.user?.image,
+      username: session?.user?.name,
+      caption: captionRef.current.value,
+      timestamp: serverTimestamp(),
+    });
+  };
 
   return (
     <div className="w-screen sm:w-full ">
@@ -21,10 +34,13 @@ const CreatePost = () => {
               type="text"
               placeholder="What's on your mind Joe Doe?"
               className="outline-0 bg-[#f2f3f7] p-1 rounded-full pl-3 w-full h-12 truncate"
+              ref={captionRef}
             />
           </div>
           <div className="flex items-center bg-blue-500 px-3 rounded-full h-10 ml-4">
-            <button className="font-bold text-white">Post</button>
+            <button className="font-bold text-white" onClick={uploadPost}>
+              Post
+            </button>
           </div>
         </div>
         <div className="border-b mb-4 mt-2"></div>

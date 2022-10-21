@@ -11,20 +11,23 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { AiOutlineCamera, AiOutlineGif } from "react-icons/ai";
 import { BiWorld } from "react-icons/bi";
 import Image from "next/image";
+import Moment from "react-moment";
 
-const Post = () => {
+const Post = ({ id, timestamp, caption, userImg, username }) => {
   return (
     <div className="bg-white rounded-[1rem] px-5 py-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <div className="w-12 h-12">
-            <Image src={guy} className="rounded-full" />
+            <img src={userImg} className="rounded-full" />
           </div>
           <div className="ml-3">
-            <p className="font-bold">Joe Doe</p>
+            <p className="font-bold">{username}</p>
             <div className="flex">
-              <p className="text-xs">3 hours ago &#8226;</p>
+              <p className="text-xs">
+                <Moment fromNow>{timestamp?.toDate()}</Moment> &#8226;
+              </p>
               <BiWorld className="ml-1 shrink-0" />
             </div>
           </div>
@@ -37,7 +40,7 @@ const Post = () => {
 
       {/* Input */}
       <div className="my-3">
-        <p>My brand new car</p>
+        <p>{caption}</p>
       </div>
 
       {/* Image */}
