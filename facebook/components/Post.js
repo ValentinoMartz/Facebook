@@ -185,7 +185,7 @@ const Post = ({ id, timestamp, caption, userImg, username, img }) => {
         <div className="">
           {/* First Comment */}
           {comments.map((comment) => (
-            <div className="">
+            <div key={comment.id} className="">
               <div className="flex items-center mt-3">
                 <div className="w-10 h-10">
                   <img src={comment.data().image} className="rounded-full" />
