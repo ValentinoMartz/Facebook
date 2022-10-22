@@ -13,14 +13,13 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 const Header = () => {
   const { data: session } = useSession();
-  const router = useRouter()
-  
+  const router = useRouter();
 
   return (
     <div className="p-4 flex items-center justify-between border-b lg:px-10">
       {/* LeftSide */}
       <div className="flex items-center mr-2">
-        <div className="w-10 h-10" onClick={() => router.push('/')}>
+        <div className="w-10 h-10" onClick={() => router.push("/")}>
           <Image src={facebook} />
         </div>
         <div className="ml-2">
@@ -47,7 +46,7 @@ const Header = () => {
           <AiOutlineMessage className="w-7 h-7" />
         </div>
 
-        <div className="w-10 h-10" onClick={signIn}>
+        <div className="w-10 h-10" onClick={() => signIn()}>
           <img
             src={session ? session?.user?.image : nouser.src}
             className="rounded-full"
